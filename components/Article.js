@@ -86,6 +86,13 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Having breakfast with the Queen',
+    date: 'Nov 20, 2020',
+    firstParagraph: `Wow, this was an incredible day. I had breakfast with the Queen. We ate the breakfast together and it was nice. We enjoyed each other's company so much. We are besties now. forever.`,
+    secondParagraph: `Wow, this was an incredible day. I had breakfast with the Queen. We ate the breakfast together and it was nice. We enjoyed each other's company so much. We are besties now. forever.`,
+    thirdParagraph: `Wow, this was an incredible day. I had breakfast with the Queen. We ate the breakfast together and it was nice. We enjoyed each other's company so much. We are besties now. forever.`
   }
 ];
 
@@ -114,3 +121,44 @@ const data = [
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+
+const articles = document.querySelector('.articles');
+
+function articleMaker(obj) {
+  const article = document.createElement('div');
+  const artTitle = document.createElement('h2');
+  const date = document.createElement('p');
+  const parOne = document.createElement('p');
+  const parTwo = document.createElement('p');
+  const parThree = document.createElement('p');
+  const expBtn = document.createElement('span');
+
+  article.appendChild(artTitle);
+  article.appendChild(date);
+  article.appendChild(parOne);
+  article.appendChild(parTwo);
+  article.appendChild(parThree);
+  article.appendChild(expBtn);
+
+  article.classList.add('article');
+  date.classList.add('date');
+  expBtn.classList.add('expandButton');
+
+  artTitle.textContent = obj.title;
+  date.textContent = obj.date;
+  parOne.textContent = obj.firstParagraph;
+  parTwo.textContent = obj.secondParagraph;
+  parThree.textContent = obj.thirdParagraph;
+  expBtn.textContent = '+';
+
+  expBtn.addEventListener('click', () => {
+    article.classList.toggle('article-open');
+  });
+
+  return article;
+}
+
+data.forEach(a => {
+  const art = articleMaker(a);
+  articles.appendChild(art);
+});
